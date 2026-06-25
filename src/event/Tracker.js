@@ -206,6 +206,7 @@ define(function(require) {
                     && pointer.x === event.clientX
                     && pointer.y === event.clientY
                 ) {
+                    LAST_EVENTS[eventName][pointerId] = null;
                     return true;
                 }
             }
