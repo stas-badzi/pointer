@@ -41,17 +41,6 @@ define(function(require) {
     var TARGET_LOCKS = {};
 
     /**
-     * Max time between touch and simulated mouse event (3 seconds)
-     *
-     * We only use this to expire a touch event - after 3 seconds,
-     * no longer use this event when detecting simulated events.
-     *
-     * @type Number
-     * @static
-     */
-    var DELTA_TIME = 3000;
-
-    /**
      * Default capture event data
      *
      * @type Object
@@ -212,14 +201,6 @@ define(function(require) {
                 }
 
                 pointer = previousEvent[pointerId];
-
-                // If too much time has passed since the last touch
-                // event, remove it so we no longer test against it.
-                if (Math.abs(now - pointer.timeStamp) > DELTA_TIME) {
-                    LAST_EVENTS[eventName][pointerId] = null;
-                    continue;
-                }
-
                 if (
                     pointer.target === target
                     && pointer.x === event.clientX
